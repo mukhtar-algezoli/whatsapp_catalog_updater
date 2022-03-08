@@ -12,12 +12,12 @@ client = MongoClient("mongodb+srv://enigma:A_pass2mongo@sme-platform.pkbgh.mongo
 whatsapp_users = client.backend.users.find({ "whatsapp_update_file" : { "$exists" : True } })
 
 
-def get_khodorgy_categories():
+def get_khodorgy_categories(lang):
     endpoint = "https://khodorgy.com/api/categories"
     headers = {
     'accept': 'application/json',
     'api_token': "u5XON0EPMNlKCehRvIT",
-    'lang': 'en'
+    'lang': lang
         }
     res = requests.get(endpoint,
                             headers=headers)
@@ -27,4 +27,4 @@ def get_khodorgy_categories():
     return res_data
 
 
-print(get_khodorgy_categories())
+print(get_khodorgy_categories("ar"))
