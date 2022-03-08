@@ -17,7 +17,7 @@ def get_khodorgy_categories():
     headers = {
     'accept': 'application/json',
     'api_token': "u5XON0EPMNlKCehRvIT",
-    'lang': 'ar'
+    'lang': 'en'
         }
     res = requests.get(endpoint,
                             headers=headers)
