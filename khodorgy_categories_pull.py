@@ -27,4 +27,9 @@ def get_khodorgy_categories(lang):
     return res_data
 
 
-print(get_khodorgy_categories("ar"))
+cats_ar = get_khodorgy_categories("ar")
+cats_en = get_khodorgy_categories("en")
+
+for i in range(0,3):
+    print(i)
+
