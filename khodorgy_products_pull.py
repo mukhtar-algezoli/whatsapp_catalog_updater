@@ -85,7 +85,7 @@ for i in range(len(products_ar)):
     product_dict["updatedAt"] = datetime.now()
     product_dict["__v"]= 0
     
-    print(product_dict)
+    # print(product_dict)
         
     # client.backend.products.insert_one(product_dict)
 
