@@ -109,4 +109,4 @@ for i in range(0,4):
         user_dict["__v"]= 0
         
         output = client.backend.categories.insert_one(user_dict)
-        print(list(output))
+        print(output.inserted_id )
