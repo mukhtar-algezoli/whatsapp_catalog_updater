@@ -98,9 +98,9 @@ index = 1
 for j in range(len(cats_ar)):
         user_dict = {}
         user_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
-        user_dict["name"] = cats_en[index]["name"]
+        user_dict["name"] = cats_en[index - 1]["name"]
         user_dict["desc"] = "khodorgy category"
-        user_dict["arabicName"] = cats_ar[index]["name"]
+        user_dict["arabicName"] = cats_ar[index - 1]["name"]
         user_dict["arabicDesc"] = "khodorgy category"
         user_dict["root"] = True
         user_dict["children"]= []
