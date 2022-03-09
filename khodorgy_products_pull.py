@@ -112,7 +112,7 @@ for j in range(len(cats_ar)):
         
         output = client.backend.categories.insert_one(user_dict)
         for i in range(len(products_ar)):
-            if products_en[i]["category_id"] == index:
+            if products_en[i]["category_id"] == str(index):
                 product_dict = {}
                 product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
                 product_dict["name"] = products_en[i]["name"]
