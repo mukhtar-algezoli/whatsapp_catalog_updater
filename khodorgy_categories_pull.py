@@ -66,5 +66,5 @@ def get_khodorgy_products(lang):
 #         client.backend.categories.insert_one(user_dict)
 
 
-for product in get_khodorgy_products("ar"):
+for product in get_khodorgy_products("en"):
     print(product)
