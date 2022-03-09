@@ -65,6 +65,26 @@ def get_khodorgy_products(lang):
         
 #         client.backend.categories.insert_one(user_dict)
 
+products_ar = get_khodorgy_products("ar")
+products_en = get_khodorgy_products("en")
 
-for product in get_khodorgy_products("en"):
-    print(product)
+for i in range(len(products_ar)):
+    product_dict = {}
+    product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
+    product_dict["name"] = products_en[i]["name"]
+    product_dict["desc"] = products_en[i]["description"]
+    product_dict["arabicName"] = products_ar[i]["name"]
+    product_dict["arabicDisc"] = products_ar[i]["description"]
+    product_dict["url"] = products_ar[i]["image_full_path"]
+    product_dict["price"] = products_ar[i]["price"]
+    product_dict["categories"] = [ObjectId("620ce3dc422c0f83d7740591")]
+    product_dict["variants"] = []
+    product_dict["thumbnail"] = products_ar[i]["image_full_path"]
+    product_dict["images"] = []
+    product_dict["createdAt"] = datetime.now()
+    product_dict["updatedAt"] = datetime.now()
+    product_dict["__v"]= 0
+    
+    print(product_dict)
+        
+    # client.backend.products.insert_one(product_dict)
