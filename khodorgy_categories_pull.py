@@ -42,7 +42,7 @@ def get_khodorgy_products(lang):
     return res_data
 
 
-print(get_khodorgy_products("ar"))
+print(get_khodorgy_products("en"))
 
 
 # cats_ar = get_khodorgy_categories("ar")
