@@ -27,24 +27,42 @@ def get_khodorgy_categories(lang):
     
     return res_data
 
+def get_khodorgy_products(lang):
+    endpoint = "https://khodorgy.com/api/products"
+    headers = {
+    'accept': 'application/json',
+    'api_token': "u5XON0EPMNlKCehRvIT",
+    'lang': lang
+        }
+    res = requests.get(endpoint,
+                            headers=headers)
 
-cats_ar = get_khodorgy_categories("ar")
-cats_en = get_khodorgy_categories("en")
+    res_data =  res.json()["data"]
+    
+    return res_data
 
-for i in range(0,4):
-        user_dict = {}
-        user_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
-        user_dict["name"] = cats_en[i]["name"]
-        user_dict["desc"] = "khodorgy category"
-        user_dict["arabicName"] = cats_ar[i]["name"]
-        user_dict["arabicDesc"] = "khodorgy category"
-        user_dict["root"] = True
-        user_dict["children"]= []
-        user_dict["thumbnail"] = None
-        user_dict["images"] = []
-        user_dict["createdAt"] = datetime.now()
-        user_dict["updatedAt"] = datetime.now()
-        user_dict["__v"]= 0
+
+print(get_khodorgy_products("ar"))
+
+
+# cats_ar = get_khodorgy_categories("ar")
+# cats_en = get_khodorgy_categories("en")
+
+# for i in range(0,4):
+#         user_dict = {}
+#         user_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
+#         user_dict["name"] = cats_en[i]["name"]
+#         user_dict["desc"] = "khodorgy category"
+#         user_dict["arabicName"] = cats_ar[i]["name"]
+#         user_dict["arabicDesc"] = "khodorgy category"
+#         user_dict["root"] = True
+#         user_dict["children"]= []
+#         user_dict["thumbnail"] = None
+#         user_dict["images"] = []
+#         user_dict["createdAt"] = datetime.now()
+#         user_dict["updatedAt"] = datetime.now()
+#         user_dict["__v"]= 0
         
-        client.backend.categories.insert_one(user_dict)
+#         client.backend.categories.insert_one(user_dict)
+
 
