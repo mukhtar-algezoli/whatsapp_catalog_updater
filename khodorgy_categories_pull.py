@@ -30,7 +30,7 @@ def get_khodorgy_categories(lang):
 
 cats_ar = get_khodorgy_categories("ar")
 cats_en = get_khodorgy_categories("en")
-print(cats_en)
+print(cats_ar)
 
 for i in range(0,4):
         user_dict = {}
