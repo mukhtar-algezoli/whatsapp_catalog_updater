@@ -30,6 +30,7 @@ def get_khodorgy_categories(lang):
 
 cats_ar = get_khodorgy_categories("ar")
 cats_en = get_khodorgy_categories("en")
+print(cats_en)
 
 for i in range(0,4):
         user_dict = {}
@@ -46,5 +47,5 @@ for i in range(0,4):
         user_dict["updatedAt"] = datetime.now()
         user_dict["__v"]= 0
         
-        client.backend.categories.insert_one(user_dict)
+        # client.backend.categories.insert_one(user_dict)
 
