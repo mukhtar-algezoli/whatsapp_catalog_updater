@@ -93,12 +93,14 @@ for i in range(len(products_ar)):
 cats_ar = get_khodorgy_categories("ar")
 cats_en = get_khodorgy_categories("en")
 
-for i in range(len(cats_ar)):
+index = 1
+
+for j in range(len(cats_ar)):
         user_dict = {}
         user_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
-        user_dict["name"] = cats_en[i]["name"]
+        user_dict["name"] = cats_en[index]["name"]
         user_dict["desc"] = "khodorgy category"
-        user_dict["arabicName"] = cats_ar[i]["name"]
+        user_dict["arabicName"] = cats_ar[index]["name"]
         user_dict["arabicDesc"] = "khodorgy category"
         user_dict["root"] = True
         user_dict["children"]= []
@@ -110,21 +112,24 @@ for i in range(len(cats_ar)):
         
         output = client.backend.categories.insert_one(user_dict)
         for i in range(len(products_ar)):
-            if 
-            product_dict = {}
-            product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
-            product_dict["name"] = products_en[i]["name"]
-            product_dict["desc"] = products_en[i]["description"]
-            product_dict["arabicName"] = products_ar[i]["name"]
-            product_dict["arabicDisc"] = products_ar[i]["description"]
-            product_dict["url"] = products_ar[i]["image_full_path"]
-            product_dict["price"] = products_ar[i]["price"]
-            product_dict["categories"] = [ObjectId(str(output.inserted_id))]
-            product_dict["variants"] = []
-            product_dict["thumbnail"] = products_ar[i]["image_full_path"]
-            product_dict["images"] = []
-            product_dict["createdAt"] = datetime.now()
-            product_dict["updatedAt"] = datetime.now()
-            product_dict["__v"]= 0
+            if products_en[i]["category_id"] == index:
+                product_dict = {}
+                product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
+                product_dict["name"] = products_en[i]["name"]
+                product_dict["desc"] = products_en[i]["description"]
+                product_dict["arabicName"] = products_ar[i]["name"]
+                product_dict["arabicDisc"] = products_ar[i]["description"]
+                product_dict["url"] = products_ar[i]["image_full_path"]
+                product_dict["price"] = products_ar[i]["price"]
+                product_dict["id"] = products_ar[i]["id"]
+                product_dict["categories"] = [ObjectId(str(output.inserted_id))]
+                product_dict["variants"] = []
+                product_dict["thumbnail"] = products_ar[i]["image_full_path"]
+                product_dict["images"] = []
+                product_dict["createdAt"] = datetime.now()
+                product_dict["updatedAt"] = datetime.now()
+                product_dict["__v"]= 0
 
-            client.backend.products.insert_one(product_dict)
+                client.backend.products.insert_one(product_dict)
+        
+        index += 1
