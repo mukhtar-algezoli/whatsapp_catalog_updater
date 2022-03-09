@@ -42,7 +42,7 @@ def get_khodorgy_products(lang):
     return res_data
 
 
-print(get_khodorgy_products("en"))
+# print(get_khodorgy_products("en"))
 
 
 # cats_ar = get_khodorgy_categories("ar")
@@ -66,3 +66,5 @@ print(get_khodorgy_products("en"))
 #         client.backend.categories.insert_one(user_dict)
 
 
+for product in get_khodorgy_products("ar"):
+    print(product)
