@@ -139,7 +139,7 @@ for j in range(len(cats_ar)):
                 product_dict["unit_id"] = products_ar[i]["unit"]["id"]
                 product_dict["categories"] = [ObjectId(str(output.inserted_id))]
                 product_dict["variants"] = []
-                product_dict["thumbnail"] = products_ar[i]["image_full_path"] if str(index) != "2" else  "https://i.imgur.com/aRYj2R4.jpg"
+                product_dict["thumbnail"] = products_ar[i]["image_full_path"] if str(index) != "3" else  "https://i.imgur.com/aRYj2R4.jpg"
                 product_dict["images"] = []
                 product_dict["createdAt"] = datetime.now()
                 product_dict["updatedAt"] = datetime.now()
