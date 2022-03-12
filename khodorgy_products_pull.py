@@ -12,6 +12,20 @@ client = MongoClient("mongodb+srv://enigma:A_pass2mongo@sme-platform.pkbgh.mongo
 
 whatsapp_users = client.backend.users.find({ "whatsapp_update_file" : { "$exists" : True } })
 
+def khodorgy_unit_value(unit_id):
+    return {
+            1: 1,
+            2: 0.5,
+            3: 0.25,
+        }[unit_id]
+
+
+def khodorgy_unit_name(unit_id):
+    return {
+            1: " ",
+            2: "نصف",
+            3: "ربع",
+        }[unit_id]
 
 def get_khodorgy_categories(lang):
     endpoint = "https://khodorgy.com/api/categories"
@@ -115,12 +129,12 @@ for j in range(len(cats_ar)):
             if products_en[i]["category_id"] == str(index):
                 product_dict = {}
                 product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
-                product_dict["name"] = products_en[i]["name"]
-                product_dict["desc"] = products_en[i]["description"]
-                product_dict["arabicName"] = products_ar[i]["name"]
-                product_dict["arabicDisc"] = products_ar[i]["description"]
+                product_dict["name"] = products_ar[i]["name"] + "/"+ products_ar[i]["weight_unit"]["title"]
+                product_dict["desc"] = 
+                product_dict["arabicName"] = products_ar[i]["name"] + "/"+ products_ar[i]["weight_unit"]["title"]
+                product_dict["arabicDisc"] = "سيتم اضافة " + khodorgy_unit_name(products_ar[i]["unit_id"]) + " لكل وحدة"
                 product_dict["url"] = products_ar[i]["image_full_path"]
-                product_dict["price"] = products_ar[i]["price"]
+                product_dict["price"] = products_ar[i]["price"] * khodorgy_unit_value(products_ar[i]["unit_id"])
                 product_dict["id"] = products_ar[i]["id"]
                 product_dict["unit_id"] = products_ar[i]["unit"]["id"]
                 product_dict["categories"] = [ObjectId(str(output.inserted_id))]
@@ -134,3 +148,4 @@ for j in range(len(cats_ar)):
                 client.backend.products.insert_one(product_dict)
         
         index += 1
+
