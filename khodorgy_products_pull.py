@@ -130,7 +130,7 @@ for j in range(len(cats_ar)):
                 product_dict = {}
                 product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
                 product_dict["name"] = products_ar[i]["name"] + "/"+ products_ar[i]["weight_unit"]["title"]
-                product_dict["desc"] = "سيتم اضافة " + khodorgy_unit_name(products_ar[i]["unit_id"]) + " لكل وحدة"
+                product_dict["desc"] = "سيتم اضافة " + khodorgy_unit_name(products_ar[i]["unit_id"])+" "+ products_ar[i]["weight_unit"]["title"] + " لكل وحدة"
                 product_dict["arabicName"] = products_ar[i]["name"] + "/"+ products_ar[i]["weight_unit"]["title"]
                 product_dict["arabicDisc"] = "سيتم اضافة " + khodorgy_unit_name(products_ar[i]["unit_id"]) + " لكل وحدة"
                 product_dict["url"] = products_ar[i]["image_full_path"]
