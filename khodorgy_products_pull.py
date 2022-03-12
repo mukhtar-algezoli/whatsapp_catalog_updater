@@ -14,17 +14,17 @@ whatsapp_users = client.backend.users.find({ "whatsapp_update_file" : { "$exists
 
 def khodorgy_unit_value(unit_id):
     return {
-            1: 1,
-            2: 0.5,
-            3: 0.25,
+            "1": 1,
+            "2": 0.5,
+            "3": 0.25,
         }[unit_id]
 
 
 def khodorgy_unit_name(unit_id):
     return {
-            1: " ",
-            2: "نصف",
-            3: "ربع",
+            "1": " ",
+            "2": "نصف",
+            "3": "ربع",
         }[unit_id]
 
 def get_khodorgy_categories(lang):
