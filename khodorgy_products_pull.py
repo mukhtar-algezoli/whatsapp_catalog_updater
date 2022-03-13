@@ -133,6 +133,7 @@ for j in range(len(cats_ar)):
                 product_dict["desc"] = "سيتم اضافة " + khodorgy_unit_name(products_ar[i]["unit_id"])+" "+ products_ar[i]["weight_unit"]["title"] + " لكل وحدة"
                 product_dict["arabicName"] = products_ar[i]["name"] + "/"+ products_ar[i]["weight_unit"]["title"]
                 product_dict["arabicDisc"] = "سيتم اضافة " + khodorgy_unit_name(products_ar[i]["unit_id"]) + " لكل وحدة"
+                product_dict["weight_unit_title"] = products_ar[i]["weight_unit"]["title"]
                 product_dict["url"] = products_ar[i]["image_full_path"]
                 product_dict["price"] = float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])
                 product_dict["id"] = products_ar[i]["id"]
