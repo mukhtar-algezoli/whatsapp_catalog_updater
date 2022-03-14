@@ -5,6 +5,7 @@ import gspread
 import pandas as pd
 import gspread_dataframe as gd
 import time
+from datetime import datetime
 
 from oauth2client.service_account import ServiceAccountCredentials
 # define the scope
@@ -35,5 +36,6 @@ while True:
         existing = gd.get_as_dataframe(ws)
         updated = existing.append(df)
         gd.set_with_dataframe(ws, updated)
-    print("catalogs updated at time: " + str(time.time()))
+    
+    print("catalogs updated at time: " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     time.sleep(60)
