@@ -24,10 +24,8 @@ scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/aut
 # add credentials to the account
 creds = ServiceAccountCredentials.from_json_keyfile_name('./semiotic-bloom-334320-53016b79b117.json', scope)
 
-client = gspread.authorize(creds)
+gsheets_client = gspread.authorize(creds)
 df = pd.DataFrame()
-
-whatsapp_users = client.backend.users.find({ "whatsapp_update_file" : { "$exists" : True } })
 
 def khodorgy_unit_value(unit_id):
     return {
@@ -181,7 +179,7 @@ for j in range(len(cats_ar)):
         
         index += 1
 
-sheet = client.open("khodorgy_catalog_update")
+sheet = gsheets_client.open("khodorgy_catalog_update")
 sheet_instance = sheet.get_worksheet(0)
 df = pd.DataFrame()  
 sheet_instance.resize(rows=1)
@@ -192,7 +190,7 @@ for product in products:
     # data = {"id":str(product["_id"]),	"title":product["name"],	"description":"some description",	"google_product_category":"product",	"product_type":"product",	"link":"https://khodorgy.com/",	"image_link":"https://i.imgur.com/RKl8LpW.png",	"condition":"new",	"availability":"in stock",	"price":product["price"],	"sale_price":" ",	"sale_price_effective_date":" ",	"gtin":str(product["categories"][0]),	"brand":"no brand",	"item_group_id":str(product["categories"][0]),	"gender":" ",	"age_group":" ",	"color":" ",	"size":" ",	"shipping":" ",	"custom_label_0":" ", "additional_image_link":additional_images}
     df = df.append(data, ignore_index=True)
 # Connecting with `gspread` here
-ws = client.open("khodorgy_catalog_update").get_worksheet(0)
+ws = gsheets_client.open("khodorgy_catalog_update").get_worksheet(0)
 existing = gd.get_as_dataframe(ws)
 updated = existing.append(df)
 gd.set_with_dataframe(ws, updated)
