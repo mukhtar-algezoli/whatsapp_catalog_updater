@@ -117,7 +117,7 @@ def get_khodorgy_products(lang):
         
     # client.backend.products.insert_one(product_dict)
 
-time.sleep(3300)
+# time.sleep(3300)
 
 while True:
     products_ar = get_khodorgy_products("ar")
@@ -156,7 +156,8 @@ while True:
                     product = client.backend.products.find_one({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")})
                     if category is not None:
                         print("product found")
-                        user = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"price": float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])}}, upsert=False)  
+                        user = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"price": float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])}}, upsert=False)
+                        user = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"khodorgy_id": products_ar[i]["id"]}}, upsert=False)  
                         print("product price updated")
                     else:
                         print("product not found")
@@ -170,6 +171,7 @@ while True:
                         product_dict["url"] = products_ar[i]["image_full_path"]
                         product_dict["price"] = float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])
                         product_dict["id"] = products_ar[i]["id"]
+                        product_dict["khodorgy_id"] = products_ar[i]["id"]
                         product_dict["unit_id"] = products_ar[i]["unit"]["id"]
                         product_dict["categories"] = category.id if category else [ObjectId(str(output.inserted_id))]
                         product_dict["variants"] = []
