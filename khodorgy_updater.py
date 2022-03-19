@@ -117,7 +117,7 @@ def get_khodorgy_products(lang):
         
     # client.backend.products.insert_one(product_dict)
 
-# time.sleep(3300)
+time.sleep(3000)
 
 while True:
     products_ar = get_khodorgy_products("ar")
