@@ -161,6 +161,7 @@ while True:
                     else:
                         print("product not found")
                         print(products_en[i]["name"])
+                        print(category)
                         product_dict = {}
                         product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
                         product_dict["name"] = products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"]
