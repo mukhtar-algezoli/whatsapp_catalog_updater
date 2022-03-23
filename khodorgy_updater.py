@@ -157,7 +157,6 @@ while True:
                         print("product found")
                         updated_product = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"price": float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])}}, upsert=False)
                         updated_product = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"khodorgy_id": products_ar[i]["id"]}}, upsert=False)  
-                        print(updated_product)
                     else:
                         print("product not found")
                         print(products_en[i]["name"])
