@@ -162,7 +162,7 @@ while True:
                         print("product price updated")
                     else:
                         print("product not found")
-                        print(products_ar[i]["name"])
+                        print(products_ar[i])
                         product_dict = {}
                         product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
                         product_dict["name"] = products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"]
