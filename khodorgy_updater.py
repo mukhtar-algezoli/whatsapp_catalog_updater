@@ -173,7 +173,7 @@ while True:
                         product_dict["id"] = products_ar[i]["id"]
                         product_dict["khodorgy_id"] = products_ar[i]["id"]
                         product_dict["unit_id"] = products_ar[i]["unit"]["id"]
-                        product_dict["categories"] = category.id if category else [ObjectId(str(output.inserted_id))]
+                        product_dict["categories"] = category["id"] if category else [ObjectId(str(output.inserted_id))]
                         product_dict["variants"] = []
                         product_dict["thumbnail"] = products_ar[i]["image_full_path"] if str(index) != "3" else  "https://i.imgur.com/RKl8LpW.png"
                         product_dict["images"] = []
@@ -203,4 +203,4 @@ while True:
     # gd.set_with_dataframe(ws, updated)
 
     print("khodorgy catalog updated at time: " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
-    time.sleep(3600)
+    time.sleep(1800)
