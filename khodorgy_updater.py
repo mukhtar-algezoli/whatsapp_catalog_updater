@@ -149,7 +149,7 @@ while True:
                 user_dict["updatedAt"] = datetime.now()
                 user_dict["__v"]= 0
                 
-                output = client.backend.categories.insert_one(user_dict)
+                # output = client.backend.categories.insert_one(user_dict)
             for i in range(len(products_ar)):
                 if products_en[i]["category_id"] == str(index):
                     product = client.backend.products.find_one({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")})
@@ -162,6 +162,7 @@ while True:
                         print("product price updated")
                     else:
                         print("product not found")
+                        print(products_ar[i]["name"])
                         product_dict = {}
                         product_dict["owner"] = ObjectId("620ce3dc422c0f83d7740591")
                         product_dict["name"] = products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"]
@@ -183,7 +184,7 @@ while True:
                         product_dict["__v"]= 0
                         print(product_dict["name"] + " product created")
 
-                        client.backend.products.insert_one(product_dict)
+                        # client.backend.products.insert_one(product_dict)
             
             index += 1
 
