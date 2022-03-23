@@ -117,7 +117,6 @@ def get_khodorgy_products(lang):
         
     # client.backend.products.insert_one(product_dict)
 
-time.sleep(3000)
 
 while True:
     products_ar = get_khodorgy_products("ar")
@@ -159,6 +158,7 @@ while True:
                         print(client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"price": float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])}}, upsert=False))
                         user = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"price": float(products_ar[i]["price"]) * khodorgy_unit_value(products_ar[i]["unit_id"])}}, upsert=False)
                         user = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"khodorgy_id": products_ar[i]["id"]}}, upsert=False)  
+                        print(user)
                         print("product price updated")
                     else:
                         print("product not found")
@@ -187,21 +187,21 @@ while True:
             
             index += 1
 
-    sheet = gsheets_client.open("khodorgy_catalog_update")
-    sheet_instance = sheet.get_worksheet(0)
-    df = pd.DataFrame()  
-    sheet_instance.resize(rows=1)
-    products = client.backend.products.find({"owner": ObjectId("620ce3dc422c0f83d7740591")})
-    for product in products:
-        additional_images = joined_string = ",".join(product["images"])
-        data = {"id":str(product["_id"]),	"title":product["name"],	"description":product["desc"],	"google_product_category":"Food, Beverages & Tobacco > Food Items > Fruits & Vegetables",	"link":"https://khodorgy.com/",	"image_link":product["thumbnail"] if product["thumbnail"]!=None else "https://i.imgur.com/RKl8LpW.png",	"condition":"new",	"availability":"in stock",	"price":product["price"],	"sale_price":" ",	"sale_price_effective_date":" ",		"brand":"no brand",	"item_group_id":str(product["categories"][0]),	"gender":" ",	"age_group":" ",	"color":" ",	"size":" ",	"shipping":" ",	"custom_label_0":" ", "additional_image_link":additional_images}
-        # data = {"id":str(product["_id"]),	"title":product["name"],	"description":"some description",	"google_product_category":"product",	"product_type":"product",	"link":"https://khodorgy.com/",	"image_link":"https://i.imgur.com/RKl8LpW.png",	"condition":"new",	"availability":"in stock",	"price":product["price"],	"sale_price":" ",	"sale_price_effective_date":" ",	"gtin":str(product["categories"][0]),	"brand":"no brand",	"item_group_id":str(product["categories"][0]),	"gender":" ",	"age_group":" ",	"color":" ",	"size":" ",	"shipping":" ",	"custom_label_0":" ", "additional_image_link":additional_images}
-        df = df.append(data, ignore_index=True)
-    # Connecting with `gspread` here
-    ws = gsheets_client.open("khodorgy_catalog_update").get_worksheet(0)
-    existing = gd.get_as_dataframe(ws)
-    updated = existing.append(df)
-    gd.set_with_dataframe(ws, updated)
+    # sheet = gsheets_client.open("khodorgy_catalog_update")
+    # sheet_instance = sheet.get_worksheet(0)
+    # df = pd.DataFrame()  
+    # sheet_instance.resize(rows=1)
+    # products = client.backend.products.find({"owner": ObjectId("620ce3dc422c0f83d7740591")})
+    # for product in products:
+    #     additional_images = joined_string = ",".join(product["images"])
+    #     data = {"id":str(product["_id"]),	"title":product["name"],	"description":product["desc"],	"google_product_category":"Food, Beverages & Tobacco > Food Items > Fruits & Vegetables",	"link":"https://khodorgy.com/",	"image_link":product["thumbnail"] if product["thumbnail"]!=None else "https://i.imgur.com/RKl8LpW.png",	"condition":"new",	"availability":"in stock",	"price":product["price"],	"sale_price":" ",	"sale_price_effective_date":" ",		"brand":"no brand",	"item_group_id":str(product["categories"][0]),	"gender":" ",	"age_group":" ",	"color":" ",	"size":" ",	"shipping":" ",	"custom_label_0":" ", "additional_image_link":additional_images}
+    #     # data = {"id":str(product["_id"]),	"title":product["name"],	"description":"some description",	"google_product_category":"product",	"product_type":"product",	"link":"https://khodorgy.com/",	"image_link":"https://i.imgur.com/RKl8LpW.png",	"condition":"new",	"availability":"in stock",	"price":product["price"],	"sale_price":" ",	"sale_price_effective_date":" ",	"gtin":str(product["categories"][0]),	"brand":"no brand",	"item_group_id":str(product["categories"][0]),	"gender":" ",	"age_group":" ",	"color":" ",	"size":" ",	"shipping":" ",	"custom_label_0":" ", "additional_image_link":additional_images}
+    #     df = df.append(data, ignore_index=True)
+    # # Connecting with `gspread` here
+    # ws = gsheets_client.open("khodorgy_catalog_update").get_worksheet(0)
+    # existing = gd.get_as_dataframe(ws)
+    # updated = existing.append(df)
+    # gd.set_with_dataframe(ws, updated)
 
     print("khodorgy catalog updated at time: " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     time.sleep(3600)
