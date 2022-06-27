@@ -181,6 +181,8 @@ while True:
                         product_dict["updatedAt"] = datetime.now()
                         product_dict["__v"]= 0
                         print(product_dict["name"] + " product created")
+                        print(product_dict["arabicName"])
+                        print(product_dict["price"])
 
                         client.backend.products.insert_one(product_dict)
             
