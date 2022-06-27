@@ -11,6 +11,7 @@ import gspread
 import pandas as pd
 import gspread_dataframe as gd
 import time
+import sys
 from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -159,6 +160,7 @@ while True:
                         updated_product = client.backend.products.find_one_and_update({'name': products_ar[i]["name"] + "\\"+ khodorgy_unit_name(products_ar[i]["unit_id"])+ " " +products_ar[i]["weight_unit"]["title"], "owner": ObjectId("620ce3dc422c0f83d7740591")},{'$set': {"khodorgy_id": products_ar[i]["id"]}}, upsert=False)  
                         print("product updated")
                         print(updated_product)
+                        sys.exit("Error message")
 
                     else:
                         print("product not found")
